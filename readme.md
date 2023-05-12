@@ -10,7 +10,7 @@ Creating a user profile also allows the user to comment/review recipes that are 
 
 User passwords are hashed using Bcrypt encryption and stored as encrypted data.
 
-You can visit the site at [https://at-home-chef.herokuapp.com/
+You can visit the site at [https://athomechef.herokuapp.com/
 ]()
 
 **Front End Tech Stack**
