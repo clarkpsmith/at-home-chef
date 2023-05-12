@@ -3,14 +3,14 @@ import requests, json
 from datetime import datetime
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-from apikey import API_SECRET_KEY
+# from apikey import API_SECRET_KEY
 from flask import Flask, render_template, request, flash, redirect, session, g, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from models import db, connect_db, season, User_Favorite, User_Comment, User, Recipe
 from forms import UserAddForm, LoginForm
 
-API_SECRET_KEY = os.environ.get('API_SECRET_KEY', API_SECRET_KEY)
+API_SECRET_KEY = os.environ.get('API_SECRET_KEY')
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 CURR_USER_KEY = "curr_user"
