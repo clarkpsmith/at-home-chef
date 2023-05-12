@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col d-flex justify-content-center container result">
+    <div>
+   
+        <h1 class="display-2 text-center heading"><span>{% if session["icon"] == "snowflake" %}
+        <img class="season-logo" height="90px" src="/static/images/icons/snowflake.png" alt="snowflake">
+        {% elif session["icon"] == "umbrella" %}
+        <img class="season-logo" height=90px" src="/static/images/icons/umbrella.png" alt="umbrella">
+        {% elif session["icon"] == "maple_leaf" %}
+        <img class="season-logo" height="90px" src="/static/images/icons/maple_leaf.png" alt="maple_leaf">
+        {% elif session["icon"] == "turkey" %}
+        <img class="season-logo" height="90px" src="/static/images/icons/turkey.png" alt="turkey">
+        {% elif session["icon"] == "tulip" %}
+        <img class="season-logo" height="90px" src="/static/images/icons/tulip.png" alt="tulip">
+        {% else %}
+        {% endif %}</span>Seasonal Dishes</h1>
+        <br>
+
+        <div id="search-results">
+            {% for result in results %}
+            <div class="col d-flex justify-content-center container result">
+                <div class="card card-width" id={{result.id}}>
+                    <a href="/dish/{{result.id}}"><img class="card-img-top img-rounded" alt={{result.title}}
+                            src="{{result.image}}"></a>
+                    <br>
+                    <h2 class="text-center"><a class="card-title text-center dish-title"
+                            href="/dish/{{result.id}}">{{result.title}}</a>
+                    </h2>
+                    {% if g.user %}
+                    <div class="favorite">
+                        {% if favorited_recipes and result.id in favorited_recipes %}
+                        <button data-id="{{result.id}}" class="btn m-2 favorited-btn"><i class="fas fa-star"></i> Remove Dish from
+                            Favorites</button>
+                        {% else %}
+                        <button data-id="{{result.id}}" class="btn m-2 not-favorited-btn"><i class="fas fa-star"></i> Add Dish to
+                            Favorites</button>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+
+                    <div class="card-body">
+                        <p class="card-text">Ready in {{result.readyInMinutes}} minutes</p>
+                        <p class="card-text">Health Score: {{result.healthScore}}</p>
+                        <p class="card-text">{{result.summary|striptags}}</p>
+                        <a href="/dish/{{result.id}}">
+                            <p class="card-text">Get this recipe!</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div>
+                <br>
+            </div>
+        </div>
+        <br>
+     <br>
+        {% if not g.user %}
+        <p><a class="dish-title" href="/signup"> Sign up here to save your favorite dishes!</a></p>
+        <a href="/signup" class="btn btns signup-btn">Sign up</a>
+        {% endif %}
+        <br>
+     
+        <form>
+            <input class="right btn btn-outline-secondary" type="button" value="Back" onclick="history.back()">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

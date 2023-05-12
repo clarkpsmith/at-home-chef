@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <!-- <meta name="description" content="At Home Chef App" />
+  <meta name="description" content="At Home Chef App" />
+  <meta name="title" property="og:title" content="At Home Chef" />
+  <meta property="og:type" content="Website" />
+  <meta name="image" property="og:image" content="hhttps://live.staticflickr.com/65535/51205131643_f743bd2f1d_z.jpg" />
+  <meta name="description" property="og:description" content="At Home Chef App" />
+  <meta name="author" content="Clark Smith" /> -->
+  <title>At Home Chef</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/popper"></script>
+  <script src="https://unpkg.com/bootstrap"></script>
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
+  <link rel="shortcut icon" href="/static/images/favicon.ico">
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-right navbar-dark nav-block navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">
+       <img class="chef-icon" src="/static/images/Chef_logo_2.svg" alt="logo">
+        <span class="brand navlink-brand">At Home Chef</span></a>
+         </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">        
+    <ul class="nav navbar-dark navbar-nav">
+      <li><a href="/" class="navlinks m-2">
+          Search</a></li>
+    <li><a href="/seasonal" class="navlinks m-2">
+        Seasonal Dishes</a></li>
+  <li><a href="/searchbyingredients" class="navlinks m-2">
+      Search By Ingredients</a></li>
+        {% if g.user %}
+        <li><a class="navlinks m-2" href="/user">Favorites</a></li>
+        {% endif %}
+      {% if not g.user %}
+      <li><a class="navlinks m-2" href="/signup">Sign Up</a></li>
+      <li><a class="navlinks m-2" href="/login">Log in</a></li>
+      {% else %}
+      <li>
+        <a class="navlinks m-2" href="/user">{{g.user.username}}
+        </a>
+      </li>
+      <li><a class="navlinks m-2" href="/logout">Log out</a></li>
+      {% endif %}
+</div>
+</nav>
+
+<div class="container-fluid contents">
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+  <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+
+  {% block content %}
+  {% endblock %}
+
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/script.js"></script>
+</body>
+</html>

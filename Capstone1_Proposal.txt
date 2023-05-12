@@ -1,0 +1,57 @@
+My cooking app will be geared towards anyone trying to up there cooking skills by finding and learning new recipes and/or helping recall favorite recipes using the Spoonacular API
+https://spoonacular.com/food-api/
+
+
+Cooking/Recipe App
+
+
+STEP 1
+
+
+* Create a website that allows users to search for specific recipes which includes ingredient lists, and cooking steps. Cooking time, nutritional value
+
+* Ability to search recipes by no filter or by dietary restrictions or by ingredients.
+
+* included wine pairing suggestions
+
+* Offer seasonal dish suggestions to users based on the time of year and/or holiday. Requests a random(popular) food that has the tag of the season in it(season would be a variable based off of the date) 
+
+
+
+
+Step 2 User Profile
+
+* Create a user profile. User passwords would be encrypted with bcrypt
+* ability to save favorite recipes for easy access.
+* Ability to send an email of ingredient list for shopping using the sendgrid email API
+* ability to publicly comment on a recipe/leave a review
+
+Database Schema 
+Would need to use a many to many relationship to link users to favorites recipes, and also a many to many to link users to comments and recipes
+
+
+users
+id Primary Key
+username
+email
+first_name
+last_name
+password
+
+recipes
+recipe_id Primary Key
+Title
+Image
+
+users_favorites
+id Primary Key
+user_id Foreign Key 
+recipe_id Foreign Key 
+timestamp
+
+users_comments
+id Primary key
+user_id Foreign Key
+time_stamp
+recipe_id Foreign Key
+comment

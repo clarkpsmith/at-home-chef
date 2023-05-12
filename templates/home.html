@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col d-flex justify-content-center result">
+<div>
+  <h1 class="display-2 text-center heading"><span><img height="150px" class="logo" src="/static/images/athomecheftransparentv2.png"></span>At Home Chef</h1>
+  <br>
+  <form method="POST">
+    <div class="form-row">
+      <div class="form-group col-md-9">
+        <label class="font-small" for="dish"></label>
+        <input class="form-control" type="text" placeholder="What dish would you like to make?" name="dish" id="dish">
+      </div>
+      <div class="search-input form-group col-md-3">
+      <label class="font-small diet-label" for="diet">Dietary Restrictions?</label>
+        <select id="diet" name="diet" class="form-control">
+        <option selected value="None">None</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Vegan">Vegan</option>
+        <option value="Ketogenic">Ketogenic</option>
+        <option value="Pescetarian">Pescetarian</option>
+        <option value="Gluten Free">Gluten Free</option>
+        <option value="Paleo">Paleo</option>
+        <option value="Whole 30">Whole 30</option>
+        <option value="Primal">Primal</option>
+        </select>
+      </div>
+    
+    </div>
+    <span><button class="btn m-2 btns">Search</button></span>
+    </form>
+
+
+
+
+
+
+
+  <br>
+  <div id="search-results">
+    <div id="noresults"><p>{{no_results}}</p></div>
+<br>
+{% for result in results %}
+<div class="col d-flex justify-content-center container_fluid result">
+<div class="card card-width" id={{result.id}}>
+  <a href="/dish/{{result.id}}"><img  class="card-img-top img-rounded" alt={{result.title}} src="{{result.image}}"></a>
+  <br>
+  <h2 class="text-center"><a class="card-title text-center dish-title" href="/dish/{{result.id}}">{{result.title}}</a>
+  </h2>
+
+    {% if g.user %}
+<div class="favorite">
+{% if favorited_recipes and result.id in favorited_recipes %}
+  <button data-id="{{result.id}}" class="btn m-2 favorited-btn"><i class="fas fa-star"></i> Remove Dish from
+    Favorites</button>
+{% else %}
+<button data-id="{{result.id}}" class="btn m-2 not-favorited-btn"><i class="fas fa-star"></i> Add Dish to
+  Favorites</button>
+{% endif %}
+</div>
+{% endif %}
+
+<div class="card-body">
+<p  class="card-text">Ready in {{result.readyInMinutes}} minutes</p>
+<p  class="card-text">Health Score: {{result.healthScore}}</p>
+<p class="card-text">{{result.summary|striptags}}</p>
+<a href="/dish/{{result.id}}">
+  <p class="card-text">Get this recipe!</p>
+</a>
+</div>
+</div>
+</div>
+{% endfor %}  
+<div>
+  <br>
+  <br>
+  <br>
+  <h4 class="text-center"><a class="dish-title" href="/seasonal">
+          {% if session["icon"] == "snowflake" %}
+                  <img height="30px" src="/static/images/icons/snowflake.png" alt="snowflake">
+                  {% elif session["icon"] == "umbrella" %}
+                  <img height="30px" src="/static/images/icons/umbrella.png" alt="umbrella">
+                  {% elif session["icon"] == "maple_leaf" %}
+                  <img height="30px" src="/static/images/icons/maple_leaf.png" alt="maple_leaf">
+                  {% elif session["icon"] == "turkey" %}
+                  <img class="season-logo" height="25px" src="/static/images/icons/turkey.png" alt="turkey">
+                  {% elif session["icon"] == "tulip" %}
+                  <img height="30px" src="/static/images/icons/tulip.png" alt="tulip">
+                  {% else %}
+                  {% endif %}
+    Looking For Seasonal Dish Ideas? Click Here</a></h4>
+</div>
+  </div>
+  <br>
+  <br>
+  {% if not g.user %}
+  <p><a class="dish-title" href="/signup"> Sign up here to save your favorite dishes!</a></p>
+  <a href="/signup" class="btn btns signup-btn">Sign up</a>
+  {% endif %}
+</div>
+  </div>
+{% endblock %}

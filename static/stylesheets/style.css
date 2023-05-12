@@ -1,0 +1,229 @@
+.dish-title {
+  text-decoration: none;
+  color: #3a3a3c;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.dish-title:hover {
+  text-decoration: none;
+  color: rgb(138, 136, 136);
+}
+.brand {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+body {
+  color: #3a3a3c;
+  background-image: url("/static/images/athomechefv3.png");
+  background-size: contain;
+  background-color: white;
+
+  background-repeat: no-repeat;
+
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+}
+
+.font-small {
+  font-size: 14px;
+}
+
+.navlinks {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.navlinks:hover {
+  text-decoration: none;
+  color: rgb(223, 219, 219);
+  transition: all 0.1s;
+}
+
+.nav-block {
+  background-color: rgb(148, 50, 50);
+}
+#seasonal {
+  color: black;
+}
+#seasonal:hover {
+  color: #3a3a3c;
+}
+.btns,
+.not-favorited-btn {
+  background-color: #3a3a3c;
+  float: right;
+  color: white;
+}
+
+.btns:hover,
+.not-favorited-btn:hover {
+  color: white;
+  background-color: #565657;
+
+  transition: all 0.1s;
+}
+.favorite-btn {
+  float: left;
+  background-color: #3a3a3c;
+  color: white;
+}
+.favorited-btn {
+  float: right;
+  background-color: #565657;
+  color: white;
+}
+.favorited-btn:hover {
+  background-color: #3a3a3c;
+  transition: all 0.1s;
+  color: white;
+}
+.favorite-btn:hover {
+  color: white;
+  background-color: #565657;
+
+  transition: all 0.1s;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.signup-btn {
+  float: left;
+}
+
+.card {
+  border-radius: 10px;
+
+  box-shadow: 0px 0px 2px #565657;
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 0px 2px #565657;
+}
+
+.img-rounded {
+  border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+.card-width {
+  width: 650px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.navbar-toggler {
+  float: right;
+}
+
+.comments {
+  color: white;
+  padding: 10px;
+  margin: none;
+}
+
+.comments-border {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+.comment {
+  padding: 15px;
+  background-color: white;
+}
+
+.date {
+  font-size: 12px;
+  color: grey;
+}
+
+.comment-block {
+  background-color: rgb(148, 50, 50);
+}
+
+.search-input {
+  position: relative;
+  bottom: 6px;
+}
+
+.diet-label {
+  margin-left: 3px;
+}
+.comment-body {
+  margin: auto;
+}
+
+.contents {
+  padding: 25px;
+}
+
+.chef-icon {
+  height: 25px;
+}
+
+@media (max-width: 650px) {
+  .contents {
+    padding: 10px;
+  }
+  .img-rounded,
+  .card-width {
+    width: 325px;
+  }
+
+  .navlinks {
+    font-size: 20px;
+  }
+  .brand {
+    font-size: 22px;
+  }
+  .chef-icon {
+    height: 27px;
+  }
+
+  .season-logo {
+    height: 35px;
+  }
+
+  .heading {
+    font-size: 40px;
+  }
+  .logo {
+    display: none;
+  }
+  .favorites-title {
+    font-size: 16px;
+  }
+  .favorites-img {
+    display: none;
+  }
+  input::placeholder {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .img-rounded,
+  .card-width {
+    width: 275px;
+  }
+
+  .season-logo {
+    height: 30px;
+  }
+}

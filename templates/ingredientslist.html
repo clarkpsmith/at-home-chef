@@ -1,0 +1,21 @@
+<h1>{{dish.title}}</h1>
+<br>
+<h3>Ingredient List</h3>
+<ul>
+    {% for ingredient in dish.extendedIngredients %}
+    <li>{{ingredient.originalString}}</li>
+    {% endfor %}
+</ul>
+<h3>Instructions</h3>
+<ol>
+    {% for step in steps %}
+    <li>{{step}}</li>
+    {% endfor %}
+</ol>
+
+<h3>Summary</h3>
+<p>{{dish.summary|striptags}}</p>
+<br>
+<a class="text-center" href="http://www.athomechef.live/dish/{{dish.id}}">Get More Info On This Recipe!</a>
+<br>
+<p>Brought To You By <a href="http://www.athomechef.live/">At Home Chef</a></p>

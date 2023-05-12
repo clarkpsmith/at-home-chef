@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+<div id={{dish.id}}>
+    <br>
+
+    <h1 class="text-center">{{dish.title}}</h1>
+        <br>
+    <a href="/dish/{{dish.id}}"><img class="img-rounded text-center"  alt={{dish.title}} src="{{dish.image}}"></a>
+
+    <br>
+    {% if g.user %}
+    <div class="favorite">
+        {% if favorited_recipes and dish.id in favorited_recipes %}
+        <button data-id="{{dish.id}}" class="btn m-2 favorited-btn"><i class="fas fa-star"></i> Remove Dish from Favorites</button>
+        </div>
+        {% else %}
+        <button data-id="{{dish.id}}" class="btn m-2 not-favorited-btn"><i class="fas fa-star"></i> Add Dish to Favorites</button>
+        {% endif %}
+        </div>
+    {% endif %}
+<p>Servings: {{dish.servings}}</p>
+<p>Ready in {{dish.readyInMinutes}} minutes</p>
+<p>Health Score: {{dish.healthScore}}</p>
+<p>Spoonacular Score: {{dish.spoonacularScore}}</p>
+<p>{{dish.summary|striptags}}</p>
+<h3>Ingredients:</h3>
+{% if g.user %}
+<form action="/dish/{{dish.id}}/grocerylist" method="POST">
+<button data-id="{{dish.id}}" class="btn m-2 btns" id="add-to-list">Email Ingredients List To Yourself</button>
+</form>
+{% endif %}
+<ul>
+   
+    {% for ingredient in dish.extendedIngredients %}
+    <li>{{ingredient.original}}</li>
+    {% endfor %}
+   
+</ul>
+<h3>Instructions:</h3>
+<ol>
+    {% for step in steps %}
+    <li>{{step}}</li>
+    {% endfor %}
+</ol>
+{% if dish.winePairing.pairingText %}
+<h3>Wine Pairing: </h3><p>{{dish.winePairing.pairingText}}</p>
+{% endif %}
+{% if dish.winePairing.pairedWines %}
+<p>Paired Wines:
+    <ul>
+        {% for wine in dish.winePairing.pairedWines %}
+    <li>{{wine}}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</p>
+<br>
+
+<div>
+    {% if g.user %}
+<div class="form-group">
+    <label for="comment">Add A Comment</label>
+    <form action="/dish/{{dish.id}}/comment" method="POST">
+    <textarea class="form-control" placeholder="Add a comment here!" name="comment"rows="2" id="comment"></textarea>
+    <input class="btn m-2 btns" type="submit" value="Post"> </form>
+</div>
+{% endif %}
+<br>
+<br>
+
+    <div class="comment-block">
+        <h3 class="comments m-2">Comments</h3>
+    </div>
+    <br>
+    <div class="comments-list">
+
+        {% if not comments %}
+            <div id="comment" class="list-group-item">
+                <div class="message-area">
+                    <p class="comment-body">Be the first to comment on this dish...</p>
+                </div>
+            </div>
+            {% endif %}
+    {% for comment in comments %}
+
+    <div id="comment" class="list-group-item">
+        <div class="message-area">
+            {% if comment.user_id == g.user.id %}
+            <button data-id="{{comment.id}}" id="delete-btn" class="btn favorited-btn"><i class="fas fa-trash" aria-hidden="true"></i></button>
+                {% endif %}
+            <h4>{{comment.user.username}}</h4>
+            <p class="date">posted on {{comment.timestamp.strftime('%m/%d/%Y')}}</p>
+            <p class="comment-body">{{comment.comment}}</p>
+        </div>
+        </div>
+        {% endfor %}
+</div>
+
+<br>
+<br>
+{%if not g.user %}
+<p class="signup-p">Sign up now to save your favorite dishes!</p>
+<a href="/signup" class="btn btn-info btns signup-btn">Sign up</a>
+{% endif %}
+<br>
+<form>
+    <input class="right btn btn-outline-secondary" type="button" value="Back" onclick="history.back()">
+</form>
+<br>
+
+{% endblock %}
+

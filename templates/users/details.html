@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div >
+    <br>
+<h1>{{g.user.first_name}} {{g.user.last_name}}</h1>
+<br>
+    <a href="/user/editprofile" class="btn sm favorited-btn">Edit Profile</a>
+<br>
+<br>
+<h2>Favorites</h2>
+<br>
+
+{% if g.user.recipes %}
+<div class="favorites">
+{% for favorite in favorites %}
+
+
+<div class="liked-recipe row"><div class="col-10"><span><img class="rounded favorites-img" height="75px" src="{{favorite.image}}" alt="{{favorite.title}}"></span> <a class="dish-title favorites-title" href="/dish/{{favorite.recipe_id}}">{{favorite.title}}</a>
+</div> <div class="col-2"> <button data-id="{{favorite.recipe_id}}" class="btn favorited-btn trash-can"><i class="fas fa-trash" aria-hidden="true"></i></button></div>
+
+</div>
+<br>
+{% endfor %}
+</div>
+
+{% else %}
+<br>
+<h5>No Favorites Added</h5>
+
+{% endif %}
+
+<br>
+<br>
+<br>
+</div>
+
+<form>
+    <input class="right btn btn-outline-secondary" type="button" value="Back" onclick="history.back()">
+</form>
+<br>
+
+{% endblock %}

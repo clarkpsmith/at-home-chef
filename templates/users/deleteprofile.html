@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br>
+<h1>{{g.user.first_name}} {{g.user.last_name}}</h1>
+<br>
+<h4> Are you sure you want to delete your profile?</h4>
+   
+<br>
+<br>
+
+<form method="POST">
+    <button class="btn sm favorited-btn">Delete Profile</button>
+</form>
+<form>
+    <input class="left btn btn-outline-secondary" type="button" value="Back" onclick="history.back()">
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
